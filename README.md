@@ -2,7 +2,8 @@
 
 Welcome to the FriendDash-DB Repository. It contains the backend for the FriendDash application.
 
-Frontend: https://github.com/EZWin-Clap/FriendDash
+- Access the API with https://frienddash-db.herokuapp.com/
+- Frontend: https://github.com/EZWin-Clap/FriendDash
 
 # Server
 
