@@ -1,3 +1,8 @@
+# FriendDash-DB
+Welcome to the FriendDash-DB Repository. It contains the backend for the FriendDash application.
+Frontend: https://github.com/EZWin-Clap/FriendDash
+
+
 # Server
 
 The development environment for the server will be hosted at localhost:5000
