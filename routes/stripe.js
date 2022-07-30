@@ -72,4 +72,15 @@ router.post('/accountLink/:id', async (req, res) => {
     type: 'account_onboarding',
   });
   res.redirect(accountLink.url);
-})
+});
+
+router.get('/accounts/:id', async (req, res) => {
+  if (req.params.id == undefined || req.params.id == null) {
+    return res.status(400);
+  }
+
+  const account = await stripe.accounts.retrieve(
+    req.params.id
+  );
+  res.send(account);
+});
