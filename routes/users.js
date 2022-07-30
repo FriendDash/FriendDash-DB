@@ -85,6 +85,7 @@ router.post('/add', function (req, res, next) {
           email: req.body.userEmail,
           name: req.body.userName
         });
+        const account = await stripe.accounts.create({ type: 'standard' });
         const user = new User({
           userName: req.body.userName,
           userProfile: req.body.userProfile,
@@ -92,9 +93,10 @@ router.post('/add', function (req, res, next) {
           userRating: [],
           userOrders: [],
           googleId: req.body.googleId,
-          stripeId: customer.id
+          stripeId: customer.id,
+          accountId: account.id
         });
-        
+
         user.save()
           .then(user => res.send(user)) //then return as json ; else return error
           .catch(err => res.status(400).json('Error: ' + err));

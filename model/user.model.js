@@ -28,6 +28,10 @@ const userSchema = new Schema(
     stripeId: {
       type: String,
       required: true,
+    },
+    accountId: {
+      type: String,
+      required: true,
     }
   },
   {

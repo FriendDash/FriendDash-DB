@@ -59,3 +59,17 @@ router.post('/paymentMethods/:cardId', async (req, res) => {
 })
 
 module.exports = router;
+
+router.post('/accountLink/:id', async (req, res) => {
+  if (req.params.id == undefined || req.params.id == null) {
+    return res.status(400);
+  }
+  
+  const accountLink = await stripe.accountLinks.create({
+    account: req.params.id,
+    refresh_url: 'http://localhost:3000/payment',
+    return_url: 'http://localhost:3000',
+    type: 'account_onboarding',
+  });
+  res.redirect(accountLink.url);
+})
