@@ -143,7 +143,8 @@ router.post('/add', function (req, res, next) {
   if (
     !req.body.restaurant ||
     !req.body.creatorName ||
-    !req.body.creatorUserId
+    !req.body.creatorUserId ||
+    !req.body.creatorAccountId
   ) {
     return res.status(400).send({ message: 'order post req missing info' });
   }
@@ -156,6 +157,7 @@ router.post('/add', function (req, res, next) {
   const creatorUserId = req.body.creatorUserId;
   const orderStatus = 'open';
   const orderDetails = req.body.orderDetails;
+  const creatorAccountId = req.body.creatorAccountId;
 
   const newOrder = new Order({
     restaurant,
@@ -164,6 +166,7 @@ router.post('/add', function (req, res, next) {
     pickupTime,
     maxSize,
     creatorUserId,
+    creatorAccountId,
     orderStatus,
     orderDetails,
   });

@@ -30,8 +30,8 @@ router.get('/paymentMethods/:stripeId', async (req, res) => {
   const paymentMethods = await stripe.customers.listPaymentMethods(
     req.params.stripeId,
     { type: 'card' }
-  );
-  res.send(paymentMethods);
+  ).then(response => res.send(response))
+  .catch(err => res.status(500));
 });
 
 router.delete('/paymentMethods/:cardId', async (req, res) => {
@@ -40,8 +40,8 @@ router.delete('/paymentMethods/:cardId', async (req, res) => {
   }
   const deletedCard = await stripe.paymentMethods.detach(
     req.params.cardId
-  );
-  res.status(204).send(deletedCard);
+  ).then(response => res.status(204))
+  .catch(err => res.status(500));
 });
 
 router.post('/paymentMethods/:cardId', async (req, res) => {
@@ -54,8 +54,8 @@ router.post('/paymentMethods/:cardId', async (req, res) => {
   const updatedCard = await stripe.paymentMethods.update(
     req.params.cardId,
     req.body
-  )
-  res.status(200).send(updatedCard);
+  ).then(response => res.send(response))
+  .catch(err => res.status(500));
 })
 
 module.exports = router;
@@ -81,6 +81,26 @@ router.get('/accounts/:id', async (req, res) => {
 
   const account = await stripe.accounts.retrieve(
     req.params.id
-  );
-  res.send(account);
+  ).then(response => res.send(response))
+  .catch(err => res.status(500));
+});
+
+router.post('/checkout', async (req, res) => {
+  if (!req.body.userStripeId || !req.body.amount || !req.body.paymentMethodId || !req.body.receiverId) {
+    return res.status(400).send({ message: 'missing body fields' });
+  }
+
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: req.body.amount,
+    currency: 'cad',
+    confirm: true,
+    customer: req.body.userStripeId,
+    payment_method: req.body.paymentMethodId,
+    transfer_data: {
+      amount: req.body.amount,
+      destination: req.body.receiverId
+    },
+    return_url: 'https://frienddash.herokuapp.com',
+  }).then (response => res.send(200))
+  .catch(err => res.send(500));
 });

@@ -10,10 +10,6 @@ const orderItemsSchema = new Schema({
     type: Number,
     required: true,
   },
-  priceId: {
-    type: String,
-    required: true,
-  },
   quantity: {
     type: Number,
     required: true,
@@ -57,6 +53,10 @@ const orderSchema = new Schema(
     },
     creatorUserId: {
       type: String,
+    },
+    creatorAccountId: {
+      type: String,
+      required: true
     },
     orderStatus: {
       type: String,
