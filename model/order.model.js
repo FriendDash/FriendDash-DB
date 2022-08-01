@@ -10,6 +10,10 @@ const orderItemsSchema = new Schema({
     type: Number,
     required: true,
   },
+  priceId: {
+    type: String,
+    required: true,
+  },
   quantity: {
     type: Number,
     required: true,
