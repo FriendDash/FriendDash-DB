@@ -40,7 +40,7 @@ router.delete('/paymentMethods/:cardId', async (req, res) => {
   }
   const deletedCard = await stripe.paymentMethods.detach(
     req.params.cardId
-  ).then(response => res.status(204))
+  ).then(response => res.status(204).send(response))
   .catch(err => res.status(500));
 });
 
@@ -101,6 +101,6 @@ router.post('/checkout', async (req, res) => {
       destination: req.body.receiverId
     },
     return_url: 'https://frienddash.herokuapp.com',
-  }).then (response => res.send(200))
+  }).then (response => res.send(response))
   .catch(err => res.send(500));
 });

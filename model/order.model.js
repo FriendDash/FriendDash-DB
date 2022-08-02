@@ -26,6 +26,9 @@ const orderDetailsSchema = new Schema({
   userName: {
     type: String,
   },
+  paid: {
+    type: Boolean,
+  },
   orderItems: {
     type: [orderItemsSchema],
   },

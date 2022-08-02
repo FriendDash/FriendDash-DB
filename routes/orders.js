@@ -244,6 +244,7 @@ router.put('/updateStatus/:orderId', function (req, res, next) {
 // {
 //   orderUserId: user.googleId,
 //   userName: user.userName,
+//   paid: false,
 //   orderItems: completeOrder,
 // }
 router.put('/updateOrderDetails/:orderId', function (req, res, next) {
@@ -254,6 +255,29 @@ router.put('/updateOrderDetails/:orderId', function (req, res, next) {
   const body = req.body;
 
   Order.findByIdAndUpdate(req.params.orderId, { $push: { orderDetails: body } })
+    .then(updatedOrder =>
+      res.status(200).send({ message: 'Successfully updated order!' })
+    )
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.put('/editOrderDetail/:orderId/:userOrderId', function (req, res, next) {
+  if (!req.params.orderId || !req.params.userOrderId) {
+    return res.status(400).send({ message: 'orderId or userOrderId param req missing info' });
+  }
+
+  if (!req.body) {
+    return res.status(400).send({ message: 'missing order detail body' });
+  }
+
+  const body = req.body;
+
+  const query = { _id: req.params.orderId, "orderDetails._id": req.params.userOrderId }
+  const updateDocument = {
+    $set: { "orderDetails": body}
+  };
+
+  Order.updateOne(query, updateDocument)
     .then(updatedOrder =>
       res.status(200).send({ message: 'Successfully updated order!' })
     )
