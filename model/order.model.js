@@ -26,6 +26,9 @@ const orderDetailsSchema = new Schema({
   userName: {
     type: String,
   },
+  paid: {
+    type: Boolean,
+  },
   orderItems: {
     type: [orderItemsSchema],
   },
@@ -53,6 +56,10 @@ const orderSchema = new Schema(
     },
     creatorUserId: {
       type: String,
+    },
+    creatorAccountId: {
+      type: String,
+      required: true
     },
     orderStatus: {
       type: String,
