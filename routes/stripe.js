@@ -65,8 +65,8 @@ router.post('/accountLink/:id', async (req, res) => {
 
   const accountLink = await stripe.accountLinks.create({
     account: req.params.id,
-    refresh_url: 'http://localhost:3000/payment',
-    return_url: 'http://localhost:3000',
+    refresh_url: 'https://frienddash.vercel.app/payment',
+    return_url: 'https://frienddash.vercel.app/payment',
     type: 'account_onboarding',
   });
   res.redirect(accountLink.url);
