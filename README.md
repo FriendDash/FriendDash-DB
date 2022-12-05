@@ -2,7 +2,7 @@
 
 Welcome to the FriendDash DB Repository. It contains the backend for the FriendDash web application.
 
-- Access the API with https://frienddash-db.herokuapp.com/
+- Access the API with https://frienddash-db.onrender.com/
 - Frontend: https://github.com/EZWin-Clap/FriendDash
 
 # Server
@@ -21,14 +21,14 @@ npm start
 
 **Users Route** /users
 
-- GET: https://frienddash-db.herokuapp.com/users
-- POST: https://frienddash-db.herokuapp.com/users/add
-- DELETE: https://frienddash-db.herokuapp.com/users/remove/:userId
-- PUT: https://frienddash-db.herokuapp.com/users/update/:userId
+- GET: https://frienddash-db.onrender.com/users
+- POST: https://frienddash-db.onrender.com/users/add
+- DELETE: https://frienddash-db.onrender.com/users/remove/:userId
+- PUT: https://frienddash-db.onrender.com/users/update/:userId
 
 **Orders Route** /orders
 
-- GET: https://frienddash-db.herokuapp.com/orders
-- POST: https://frienddash-db.herokuapp.com/orders/add
-- DELETE: https://frienddash-db.herokuapp.com/orders/remove/:orderId
-- PUT: https://frienddash-db.herokuapp.com/orders/update/:orderId
+- GET: https://frienddash-db.onrender.com/orders
+- POST: https://frienddash-db.onrender.com/orders/add
+- DELETE: https://frienddash-db.onrender.com/orders/remove/:orderId
+- PUT: https://frienddash-db.onrender.com/orders/update/:orderId
