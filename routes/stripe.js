@@ -11,7 +11,7 @@ router.post('/:stripeId/create-checkout-session', async (req, res) => {
     mode: 'setup',
     payment_method_types: ['card'],
     success_url:
-      'https://frienddash-db.herokuapp.com/stripe/success?sessionId={CHECKOUT_SESSION_ID}',
+      'https://frienddash-db.onrender.com/stripe/success?sessionId={CHECKOUT_SESSION_ID}',
     cancel_url: 'https://frienddash.vercel.app/payment',
     customer: req.params.stripeId,
   });
